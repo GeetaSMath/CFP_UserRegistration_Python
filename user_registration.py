@@ -40,7 +40,7 @@ class UserRegistration:
             raise UserRegistrationException('last name invalid')
 
     def mobile_number_get(self):
-        return self.mobile_number_get
+        return self.mobile_number
 
     def mobile_number_set(self, mobile_number):
         """
@@ -55,7 +55,7 @@ class UserRegistration:
             raise UserRegistrationException('Mobile number is invalid')
 
     def password_get(self):
-        return self.mobile_number
+        return self.password
 
     def password_set(self, password):
         """
