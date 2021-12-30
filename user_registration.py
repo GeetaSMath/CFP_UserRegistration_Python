@@ -1,7 +1,12 @@
+from nose_parameterized import parameterized
 from UserRegistrationException import UserRegistrationException
 import re
 
 class UserRegistration:
+
+    def setUp(self):
+        self.object.user=UserRegistration()
+
     """
         class: created UserRegistration class
         implemented user infromation,by validation part include regex
@@ -59,7 +64,6 @@ class UserRegistration:
 
     def password_set(self, password):
         """
-
         :param password: param as password
         :return:
         """
@@ -69,3 +73,21 @@ class UserRegistration:
             self.password = password
         else:
             raise UserRegistrationException('password is invalid')
+
+    def email_id_get(self):
+        return self.email_id
+
+    def email_id_set(self, email_id):
+        """
+         :param email_id:
+        :return:
+        """
+        if email_id == "":
+            raise UserRegistrationException("Enter valid email_id, it should not be empty")
+        if re.fullmatch("\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", email_id):
+            self.email_id = email_id
+        else:
+            raise UserRegistrationException("email_id is invalid")
+
+
+
