@@ -161,11 +161,37 @@ class test_UserRegistration(unittest.TestCase):
         ("g", "email_id is invalid"),
         ("", "Enter valid email_id, it should not be empty"),
     ])
+
     def test_email_id(self, input, expected):
+        """
+
+        :param input:input passing email_id
+        :param expected: to make it valid expected
+        :return:retrun valid email-id
+        """
         object = UserRegistration()
         try:
             object.email_id_set(input)
             self.assertEqual(object.email_id_get(), expected)
+        except UserRegistrationException as exception:
+            self.assertEqual(expected, exception.__str__())
+
+    @parameterized.expand([
+        ("Geeta1@math", "Geeta1@math"),
+        ("123", "password is invalid"),
+        ("", "Enter valid password, it should not be empty"),
+    ])
+    def test_password(self, input, expected):
+        """
+
+        :param input: password as input as Geeta1@math expected same because to make it valid
+        :param expected: Geeta1@math,inavlid,empty
+        :return: first will return valid second for inavlid and password for empty
+        """
+        object = UserRegistration()
+        try:
+            object.password_set(input)
+            self.assertEqual(object.password_get(), expected)
         except UserRegistrationException as exception:
             self.assertEqual(expected, exception.__str__())
 

@@ -50,7 +50,7 @@ class UserRegistration:
     def mobile_number_set(self, mobile_number):
         """
         :param mobile_number: mobile number
-        :return:
+        :return:mobile number
         """
         if mobile_number == "":
             raise UserRegistrationException("Enter valid mobile number ,it should not be empty")
@@ -65,11 +65,11 @@ class UserRegistration:
     def password_set(self, password):
         """
         :param password: param as password
-        :return:
+        :return:password by following validation
         """
         if password == "":
             raise UserRegistrationException("Enter valid password, it should not be empty")
-        if re.fullmatch("^([91]{2}[ ])?[0-9]{10}$", password):
+        if re.fullmatch("^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", password):
             self.password = password
         else:
             raise UserRegistrationException('password is invalid')
@@ -80,7 +80,7 @@ class UserRegistration:
     def email_id_set(self, email_id):
         """
          :param email_id:
-        :return:
+        :return:email_id by follwoing validation
         """
         if email_id == "":
             raise UserRegistrationException("Enter valid email_id, it should not be empty")
