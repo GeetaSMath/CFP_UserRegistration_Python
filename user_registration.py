@@ -84,7 +84,7 @@ class UserRegistration:
         """
         if email_id == "":
             raise UserRegistrationException("Enter valid email_id, it should not be empty")
-        if re.fullmatch("\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", email_id):
+        if re.fullmatch("^[a-zA-z0-9]+([.][0-9a-zA-z]+)*@[a-zA-z]+.[a-z]{2,3}([.][a-z]{2,3})*$", email_id):
             self.email_id = email_id
         else:
             raise UserRegistrationException("email_id is invalid")

@@ -3,7 +3,6 @@ import unittest
 
 import parameterized
 
-from nose.tools import assert_equal
 from parameterized import parameterized, parameterized_class
 from user_registration import UserRegistration
 from UserRegistrationException import UserRegistrationException
@@ -156,15 +155,17 @@ class TestUserRegistration(unittest.TestCase):
         except UserRegistrationException as exception:
             self.assertEqual("Enter valid password, it should not be empty", exception.__str__())
 
-class Test_UserRegistration(unittest.TestCase):
+class test_UserRegistration(unittest.TestCase):
     @parameterized.expand([
-        ("valid", "Geetasmath123@gmail.com", "Geetasmath123@gmail.com"),
-        ("invalid", "geetasmath@gmail.com", "geetasmath123@gmail.com"),
-        ("empty", "", ""),
+        ("Geetasmath123@gmail.com", "Geetasmath123@gmail.com"),
+        ("g", "email_id is invalid"),
+        ("", "Enter valid email_id, it should not be empty"),
     ])
-    def test_email_id(self,email_id, input, expected):
-        input = UserRegistration()
+    def test_email_id(self, input, expected):
+        object = UserRegistration()
         try:
-            input.email_id_set(expected)
+            object.email_id_set(input)
+            self.assertEqual(object.email_id_get(), expected)
         except UserRegistrationException as exception:
-            self.assertEqual(UserRegistration.email_id_get(input), exception.__str__())
+            self.assertEqual(expected, exception.__str__())
+
